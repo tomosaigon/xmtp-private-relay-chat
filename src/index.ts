@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { botConfig, XmtpBot, IContext } from "xmtp-bot-cli";
 import { Client, DecodedMessage } from "@xmtp/xmtp-js";
 import { getAllRegistrations, getAddresses, getAddressesExceptSender, isAuthorizedSender, getSenderName, register } from "./dbqueries";

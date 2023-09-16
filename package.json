@@ -1,8 +1,12 @@
 {
   "name": "xmtp-private-relay-chat",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "XMTP private relay chat (like IRC) server with command line control",
   "main": "dist/index.js",
+  "bin": {
+    "xmtp-private-relay-chat": "dist/index.js" ,
+    "xrcd": "dist/index.js" 
+  },
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
