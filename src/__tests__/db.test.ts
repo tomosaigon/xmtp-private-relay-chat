@@ -15,22 +15,21 @@ describe('SQLite test.db', () => {
     }
   });
 
-  it('should create the registry table', (done) => {
+  it('should create the registry table', async () => {
     // This test will use a real database connection and check if the "registry" table exists
     const checkTableQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name='registry';";
 
-    db.get(checkTableQuery, [], (err: Error, row: any) => {
-      if (err) {
-        done.fail(err);
-        return;
-      }
-
-      if (row && row.name === 'registry') {
-        // The "registry" table exists
-        done();
-      } else {
-        done.fail('The "registry" table does not exist.');
-      }
-    });
+    const tableExists = await new Promise((resolve) => {
+        db.get(checkTableQuery, [], (err, row: {name: string}) => {
+          if (err) {
+            resolve(false);
+          } else {
+            resolve(!!row);
+          }
+        });
+      });
+  
+      // Assert that the "registry" table exists
+      expect(tableExists).toBe(true);
   });
 });
